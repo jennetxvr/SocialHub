@@ -11,12 +11,16 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
+use App\Models\User;
 
 class SettingsController extends Controller
 {
     public function index(): View
     {
-        $user = Auth::user()->load('profile');
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        $user->load('profile');
 
         return view('settings.index', [
             'user' => $user,
@@ -25,6 +29,7 @@ class SettingsController extends Controller
 
     public function updateProfile(Request $request): RedirectResponse
     {
+        /** @var User $user */
         $user = Auth::user();
 
         $validated = $request->validate([
@@ -52,7 +57,7 @@ class SettingsController extends Controller
             if ($user->profile?->avatar_path) {
                 Storage::disk('public')->delete($user->profile->avatar_path);
             }
-            $avatarName = Str::uuid().'.'.$request->file('avatar')->getClientOriginalExtension();
+            $avatarName = Str::uuid() . '.' . $request->file('avatar')->getClientOriginalExtension();
             $profileData['avatar_path'] = $request->file('avatar')->storeAs('avatars', $avatarName, 'public');
         }
 
@@ -60,7 +65,7 @@ class SettingsController extends Controller
             if ($user->profile?->banner_path) {
                 Storage::disk('public')->delete($user->profile->banner_path);
             }
-            $bannerName = Str::uuid().'.'.$request->file('banner')->getClientOriginalExtension();
+            $bannerName = Str::uuid() . '.' . $request->file('banner')->getClientOriginalExtension();
             $profileData['banner_path'] = $request->file('banner')->storeAs('banners', $bannerName, 'public');
         }
 
@@ -79,7 +84,10 @@ class SettingsController extends Controller
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
 
-        Auth::user()->update([
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        $user->update([
             'password' => Hash::make($validated['password']),
         ]);
 
@@ -88,14 +96,16 @@ class SettingsController extends Controller
 
     public function updatePrivacy(Request $request): RedirectResponse
     {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
         $isPrivate = $request->boolean('is_private');
 
-        Auth::user()->profile()->updateOrCreate(
-            ['user_id' => Auth::id()],
+        $user->profile()->updateOrCreate(
+            ['user_id' => $user->id],
             ['is_private' => $isPrivate]
         );
 
         return back()->with('success', 'Privacy settings updated!');
     }
 }
-

@@ -11,7 +11,9 @@ class NotificationController extends Controller
 {
     public function index(): View
     {
+        /** @var \App\Models\User $currentUser */
         $currentUser = Auth::user();
+
         $notifications = $currentUser->notifications()->paginate(20);
 
         // Mark as read when viewing page
@@ -31,9 +33,11 @@ class NotificationController extends Controller
 
     public function unreadCount(): JsonResponse
     {
-        $count = Auth::user()?->unreadNotifications()->count() ?? 0;
+        /** @var \App\Models\User|null $currentUser */
+        $currentUser = Auth::user();
+
+        $count = $currentUser?->unreadNotifications()->count() ?? 0;
 
         return response()->json(['unread_count' => $count]);
     }
 }
-

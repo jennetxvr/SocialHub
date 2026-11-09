@@ -15,6 +15,7 @@ class ConversationController extends Controller
 {
     public function index(): View
     {
+        /** @var \App\Models\User $currentUser */
         $currentUser = Auth::user();
 
         $conversations = $currentUser->conversations()
@@ -31,6 +32,7 @@ class ConversationController extends Controller
 
     public function show(Conversation $conversation): View
     {
+        /** @var \App\Models\User $currentUser */
         $currentUser = Auth::user();
 
         // Ensure user belongs to conversation
@@ -70,8 +72,8 @@ class ConversationController extends Controller
 
         // Find existing 1-on-1 conversation
         $conversation = Conversation::where('type', 'direct')
-            ->whereHas('users', fn ($q) => $q->where('users.id', $currentUser->id))
-            ->whereHas('users', fn ($q) => $q->where('users.id', $user->id))
+            ->whereHas('users', fn($q) => $q->where('users.id', $currentUser->id))
+            ->whereHas('users', fn($q) => $q->where('users.id', $user->id))
             ->first();
 
         if (! $conversation) {
@@ -143,7 +145,7 @@ class ConversationController extends Controller
             $conversation->markAsReadFor($currentUser);
         }
 
-        return response()->json($newMessages->map(fn ($msg) => [
+        return response()->json($newMessages->map(fn($msg) => [
             'id' => $msg->id,
             'body' => e($msg->body),
             'user_id' => $msg->user_id,
@@ -154,4 +156,3 @@ class ConversationController extends Controller
         ]));
     }
 }
-

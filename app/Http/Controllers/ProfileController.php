@@ -37,8 +37,12 @@ class ProfileController extends Controller
         $posts = $postsQuery->paginate(12)->withQueryString();
 
         $isFollowing = false;
-        if (Auth::check() && Auth::id() !== $user->id) {
-            $isFollowing = Auth::user()->isFollowing($user);
+
+        /** @var \App\Models\User|null $currentUser */
+        $currentUser = Auth::user();
+
+        if ($currentUser && $currentUser->id !== $user->id) {
+            $isFollowing = $currentUser->isFollowing($user);
         }
 
         return view('profile.show', [
@@ -49,4 +53,3 @@ class ProfileController extends Controller
         ]);
     }
 }
-

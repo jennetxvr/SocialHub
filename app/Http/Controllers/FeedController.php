@@ -13,6 +13,8 @@ class FeedController extends Controller
     public function index(Request $request): View
     {
         $tab = $request->query('tab', 'for-you');
+
+        /** @var \App\Models\User|null $currentUser */
         $currentUser = Auth::user();
 
         $query = Post::with(['user.profile', 'media', 'likes'])

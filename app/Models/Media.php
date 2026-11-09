@@ -50,6 +50,9 @@ class Media extends Model
      */
     public function url(): string
     {
-        return Storage::disk($this->disk ?? 'public')->url($this->file_path);
+        /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+        $disk = Storage::disk($this->disk ?? 'public');
+
+        return $disk->url($this->file_path);
     }
 }
