@@ -7,7 +7,7 @@
         </div>
 
         <!-- 1. Edit Profile Form -->
-        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-white/80 shadow-sm p-6 sm:p-8 space-y-6 ring-1 ring-slate-900/5">
             <h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-3">Public Profile</h2>
 
             <form method="POST" action="{{ route('settings.profile') }}" enctype="multipart/form-data" class="space-y-5">
@@ -79,7 +79,7 @@
         </div>
 
         <!-- 2. Security / Password Update -->
-        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-white/80 shadow-sm p-6 sm:p-8 space-y-6 ring-1 ring-slate-900/5">
             <h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-3">Security & Password</h2>
 
             <form method="POST" action="{{ route('settings.password') }}" class="space-y-4">
@@ -114,7 +114,7 @@
         </div>
 
         <!-- 3. Privacy Settings -->
-        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-white/80 shadow-sm p-6 sm:p-8 space-y-6 ring-1 ring-slate-900/5">
             <h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-3">Account Privacy</h2>
 
             <form method="POST" action="{{ route('settings.privacy') }}" class="space-y-4">

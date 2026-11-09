@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,13 +12,12 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
-use App\Models\User;
 
 class SettingsController extends Controller
 {
     public function index(): View
     {
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = Auth::user();
 
         $user->load('profile');
@@ -57,7 +57,7 @@ class SettingsController extends Controller
             if ($user->profile?->avatar_path) {
                 Storage::disk('public')->delete($user->profile->avatar_path);
             }
-            $avatarName = Str::uuid() . '.' . $request->file('avatar')->getClientOriginalExtension();
+            $avatarName = Str::uuid().'.'.$request->file('avatar')->getClientOriginalExtension();
             $profileData['avatar_path'] = $request->file('avatar')->storeAs('avatars', $avatarName, 'public');
         }
 
@@ -65,7 +65,7 @@ class SettingsController extends Controller
             if ($user->profile?->banner_path) {
                 Storage::disk('public')->delete($user->profile->banner_path);
             }
-            $bannerName = Str::uuid() . '.' . $request->file('banner')->getClientOriginalExtension();
+            $bannerName = Str::uuid().'.'.$request->file('banner')->getClientOriginalExtension();
             $profileData['banner_path'] = $request->file('banner')->storeAs('banners', $bannerName, 'public');
         }
 
@@ -84,7 +84,7 @@ class SettingsController extends Controller
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
 
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = Auth::user();
 
         $user->update([
@@ -96,7 +96,7 @@ class SettingsController extends Controller
 
     public function updatePrivacy(Request $request): RedirectResponse
     {
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = Auth::user();
 
         $isPrivate = $request->boolean('is_private');

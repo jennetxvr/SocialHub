@@ -11,7 +11,7 @@
         <x-post-card :post="$post" />
 
         <!-- Add Comment Form -->
-        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sm:p-5">
+        <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm p-4 sm:p-5 ring-1 ring-slate-900/5">
             <h3 class="text-sm font-bold text-slate-900 mb-3">Leave a reply</h3>
             <form method="POST" action="{{ route('comments.store', $post) }}" class="space-y-3">
                 @csrf
@@ -34,7 +34,7 @@
             <h3 class="text-sm font-bold text-slate-900">Replies ({{ $post->comments_count ?? $post->comments()->count() }})</h3>
 
             @forelse ($comments as $comment)
-                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 space-y-3">
+                <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm p-4 space-y-3 ring-1 ring-slate-900/5">
                     <!-- Parent Comment Author & Content -->
                     <div class="flex items-start justify-between gap-3">
                         <a href="{{ route('profile.show', $comment->user->username) }}" class="flex items-center gap-2.5 group min-w-0">
@@ -96,7 +96,7 @@
                     </details>
                 </div>
             @empty
-                <div class="text-center py-8 bg-white rounded-2xl border border-slate-200/80 p-6 text-slate-400 text-xs">
+                <div class="text-center py-8 bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 p-6 text-slate-400 text-xs ring-1 ring-slate-900/5">
                     Be the first person to share a comment!
                 </div>
             @endforelse

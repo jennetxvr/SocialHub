@@ -31,4 +31,3 @@ class NewFollowerNotification extends Notification
         ];
     }
 }
-

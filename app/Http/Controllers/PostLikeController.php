@@ -49,4 +49,3 @@ class PostLikeController extends Controller
         return back();
     }
 }
-

@@ -38,7 +38,7 @@ class ProfileController extends Controller
 
         $isFollowing = false;
 
-        /** @var \App\Models\User|null $currentUser */
+        /** @var User|null $currentUser */
         $currentUser = Auth::user();
 
         if ($currentUser && $currentUser->id !== $user->id) {

@@ -50,4 +50,3 @@ class FollowController extends Controller
         return back()->with('info', $following ? 'You are now following @'.$user->username : 'You unfollowed @'.$user->username);
     }
 }
-

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ class NotificationController extends Controller
 {
     public function index(): View
     {
-        /** @var \App\Models\User $currentUser */
+        /** @var User $currentUser */
         $currentUser = Auth::user();
 
         $notifications = $currentUser->notifications()->paginate(20);
@@ -33,7 +34,7 @@ class NotificationController extends Controller
 
     public function unreadCount(): JsonResponse
     {
-        /** @var \App\Models\User|null $currentUser */
+        /** @var User|null $currentUser */
         $currentUser = Auth::user();
 
         $count = $currentUser?->unreadNotifications()->count() ?? 0;

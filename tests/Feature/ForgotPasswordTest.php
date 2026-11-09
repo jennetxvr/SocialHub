@@ -125,4 +125,3 @@ test('existing authentication features still work after adding password reset', 
     // Login page renders and includes Forgot Password link
     $this->get('/login')->assertStatus(200)->assertSee('Forgot Password?');
 });
-

@@ -82,4 +82,3 @@ class PostController extends Controller
         return redirect()->route('feed')->with('success', 'Post deleted.');
     }
 }
-

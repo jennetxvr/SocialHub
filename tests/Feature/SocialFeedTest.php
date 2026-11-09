@@ -76,4 +76,3 @@ test('user can post comments and nested replies', function () {
     expect($comment->fresh()->replies)->toHaveCount(1)
         ->and($post->fresh()->comments_count)->toBe(2);
 });
-

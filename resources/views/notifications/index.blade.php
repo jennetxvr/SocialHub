@@ -13,7 +13,7 @@
         </div>
 
         <!-- Notification List -->
-        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm divide-y divide-slate-100 overflow-hidden">
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-white/80 shadow-sm divide-y divide-slate-100/80 overflow-hidden ring-1 ring-slate-900/5">
             @forelse ($notifications as $notification)
                 @php
                     $data = $notification->data;

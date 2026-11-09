@@ -60,4 +60,3 @@ test('user can view notifications and mark all as read', function () {
 
     expect($user->fresh()->unreadNotifications)->toHaveCount(0);
 });
-

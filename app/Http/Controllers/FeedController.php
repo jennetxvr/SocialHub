@@ -14,7 +14,7 @@ class FeedController extends Controller
     {
         $tab = $request->query('tab', 'for-you');
 
-        /** @var \App\Models\User|null $currentUser */
+        /** @var User|null $currentUser */
         $currentUser = Auth::user();
 
         $query = Post::with(['user.profile', 'media', 'likes'])

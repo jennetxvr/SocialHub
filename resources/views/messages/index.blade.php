@@ -1,6 +1,6 @@
 <x-app-layout title="SocialHub — Direct Messages">
     <div class="max-w-6xl mx-auto px-4 py-6">
-        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden flex h-[calc(100vh-140px)] min-h-[500px]">
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-white/80 shadow-sm overflow-hidden flex h-[calc(100vh-140px)] min-h-[500px] ring-1 ring-slate-900/5">
 
             <!-- Left Pane: Conversations List (w-full md:w-80 lg:w-96) -->
             <div class="{{ $activeConversation ? 'hidden md:flex' : 'flex' }} w-full md:w-80 lg:w-96 flex-col border-r border-slate-200">
@@ -54,7 +54,7 @@
             <div class="{{ $activeConversation ? 'flex' : 'hidden md:flex' }} flex-1 flex-col bg-slate-50/50">
                 @if ($activeConversation && $otherUser)
                     <!-- Chat Header -->
-                    <div class="p-4 bg-white border-b border-slate-200 flex items-center justify-between">
+                    <div class="p-4 bg-white/70 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between">
                         <div class="flex items-center gap-3 min-w-0">
                             <!-- Mobile Back Button -->
                             <a href="{{ route('messages.index') }}" class="md:hidden p-1 text-slate-500 hover:text-slate-800">
@@ -75,7 +75,7 @@
                         @foreach ($messages as $msg)
                             @php $isMe = $msg->user_id === Auth::id(); @endphp
                             <div class="flex {{ $isMe ? 'justify-end' : 'justify-start' }}" data-id="{{ $msg->id }}">
-                                <div class="max-w-[75%] sm:max-w-md {{ $isMe ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-2xl rounded-tr-sm shadow-sm' : 'bg-white text-slate-800 rounded-2xl rounded-tl-sm border border-slate-200/80 shadow-xs' }} px-4 py-2.5 space-y-1">
+                                <div class="max-w-[75%] sm:max-w-md {{ $isMe ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-2xl rounded-tr-sm shadow-sm' : 'bg-white/90 backdrop-blur-xs text-slate-800 rounded-2xl rounded-tl-sm border border-white/80 shadow-xs ring-1 ring-slate-900/5' }} px-4 py-2.5 space-y-1">
                                     <p class="text-sm leading-relaxed whitespace-pre-wrap break-words">{{ $msg->body }}</p>
                                     <div class="text-[10px] {{ $isMe ? 'text-indigo-200 text-right' : 'text-slate-400' }}">
                                         {{ $msg->created_at->format('g:i A') }}
@@ -86,7 +86,7 @@
                     </div>
 
                     <!-- Message Input Bar -->
-                    <div class="p-3.5 bg-white border-t border-slate-200">
+                    <div class="p-3.5 bg-white/70 backdrop-blur-md border-t border-slate-200/60">
                         <form id="message-form" class="flex items-center gap-2" onsubmit="handleSendMessage(event)">
                             @csrf
                             <input type="text" id="message-input" name="body" placeholder="Write a message..." required autocomplete="off"
@@ -121,7 +121,7 @@
                                             bubble.className = 'flex ' + (msg.is_me ? 'justify-end' : 'justify-start');
                                             bubble.dataset.id = msg.id;
                                             bubble.innerHTML = `
-                                                <div class="max-w-[75%] sm:max-w-md ${msg.is_me ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-2xl rounded-tr-sm shadow-sm' : 'bg-white text-slate-800 rounded-2xl rounded-tl-sm border border-slate-200/80 shadow-xs'} px-4 py-2.5 space-y-1">
+                                                <div class="max-w-[75%] sm:max-w-md ${msg.is_me ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-2xl rounded-tr-sm shadow-sm' : 'bg-white/90 backdrop-blur-xs text-slate-800 rounded-2xl rounded-tl-sm border border-white/80 shadow-xs ring-1 ring-slate-900/5'} px-4 py-2.5 space-y-1">
                                                     <p class="text-sm leading-relaxed whitespace-pre-wrap break-words">${msg.body}</p>
                                                     <div class="text-[10px] ${msg.is_me ? 'text-indigo-200 text-right' : 'text-slate-400'}">
                                                         ${msg.created_at}

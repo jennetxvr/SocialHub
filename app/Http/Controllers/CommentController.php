@@ -48,4 +48,3 @@ class CommentController extends Controller
         return back()->with('success', 'Comment deleted.');
     }
 }
-

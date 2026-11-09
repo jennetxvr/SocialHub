@@ -2,7 +2,7 @@
     <div class="max-w-4xl mx-auto px-4 py-6 space-y-6">
 
         <!-- Profile Card -->
-        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-white/80 shadow-sm overflow-hidden ring-1 ring-slate-900/5">
             <!-- Banner -->
             <div class="h-44 sm:h-56 bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-600 relative">
                 @if ($user->profile?->banner_path)
@@ -109,7 +109,7 @@
             @forelse ($posts as $post)
                 <x-post-card :post="$post" />
             @empty
-                <div class="text-center py-12 bg-white rounded-2xl border border-slate-200/80 p-8 text-slate-400 text-xs">
+                <div class="text-center py-12 bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 p-8 text-slate-400 text-xs ring-1 ring-slate-900/5">
                     No posts to display in this section yet.
                 </div>
             @endforelse

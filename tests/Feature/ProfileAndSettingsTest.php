@@ -37,4 +37,3 @@ test('user can update their profile information and settings', function () {
         ->and($freshUser->profile->bio)->toBe('Brand new bio statement')
         ->and($freshUser->profile->location)->toBe('Austin, TX');
 });
-

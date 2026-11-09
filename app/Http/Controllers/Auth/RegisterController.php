@@ -49,4 +49,3 @@ class RegisterController extends Controller
         return redirect()->route('feed')->with('success', 'Welcome to SocialHub!');
     }
 }
-

@@ -5,7 +5,7 @@
         <div class="flex-1 max-w-2xl space-y-6">
 
             <!-- Post Creator Card -->
-            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sm:p-5">
+            <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm p-4 sm:p-5 ring-1 ring-slate-900/5">
                 <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data" class="space-y-4">
                     @csrf
                     <div class="flex items-start gap-3">
@@ -62,7 +62,7 @@
             @forelse ($posts as $post)
                 <x-post-card :post="$post" />
             @empty
-                <div class="text-center py-12 bg-white rounded-2xl border border-slate-200/80 p-8">
+                <div class="text-center py-12 bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 p-8 ring-1 ring-slate-900/5">
                     <div class="w-12 h-12 mx-auto rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3">
                         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
                     </div>
@@ -85,12 +85,12 @@
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </span>
                 <input type="text" name="q" placeholder="Search creators & topics..."
-                    class="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition">
+                    class="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200/70 bg-white/80 backdrop-blur-md text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition shadow-xs">
             </form>
 
             <!-- Who to Follow -->
             @if ($suggestedUsers->isNotEmpty())
-                <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm">
+                <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 p-5 shadow-sm ring-1 ring-slate-900/5">
                     <h3 class="text-sm font-bold text-slate-900 mb-4">Who to follow</h3>
                     <div class="space-y-4">
                         @foreach ($suggestedUsers as $user)
