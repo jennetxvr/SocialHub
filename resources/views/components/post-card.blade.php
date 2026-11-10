@@ -1,6 +1,6 @@
 @props(['post'])
 
-<article class="bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm p-5 hover:border-indigo-100/80 hover:shadow-md transition duration-150 ring-1 ring-slate-900/5">
+<article class="glass-post rounded-2xl p-5 hover:border-indigo-200/90 hover:shadow-xl transition duration-150">
     <!-- Header -->
     <div class="flex items-start justify-between gap-3">
         <a href="{{ route('profile.show', $post->user->username) }}" class="flex items-center gap-3 group min-w-0">
@@ -76,4 +76,3 @@
         </button>
     </div>
 </article>
-

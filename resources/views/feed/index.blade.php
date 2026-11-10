@@ -5,7 +5,7 @@
         <div class="flex-1 max-w-2xl space-y-6">
 
             <!-- Post Creator Card -->
-            <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm p-4 sm:p-5 ring-1 ring-slate-900/5">
+            <div class="glass-composer rounded-2xl p-4 sm:p-5">
                 <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data" class="space-y-4">
                     @csrf
                     <div class="flex items-start gap-3">
@@ -148,4 +148,3 @@
         }
     </script>
 </x-app-layout>
-

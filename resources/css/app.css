@@ -36,19 +36,104 @@ body {
 /* Custom utility styles */
 .glass-panel,
 [class~="bg-white/80"][class~="backdrop-blur-md"] {
-    background-color: rgba(255, 255, 255, 0.64);
-    border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 12px 36px rgba(30, 41, 59, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(24px) saturate(165%);
-    -webkit-backdrop-filter: blur(24px) saturate(165%);
+    background-color: rgba(255, 255, 255, 0.56);
+    border-color: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 16px 42px rgba(79, 70, 229, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(28px) saturate(175%);
+    -webkit-backdrop-filter: blur(28px) saturate(175%);
 }
 
 .glass-panel-dark {
-    background: rgba(15, 23, 42, 0.68);
+    background: rgba(15, 23, 42, 0.6);
     border: 1px solid rgba(148, 163, 184, 0.22);
     box-shadow: 0 12px 36px rgba(2, 6, 23, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(24px) saturate(165%);
-    -webkit-backdrop-filter: blur(24px) saturate(165%);
+    backdrop-filter: blur(28px) saturate(175%);
+    -webkit-backdrop-filter: blur(28px) saturate(175%);
+}
+
+.glass-composer {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(224, 231, 255, 0.48) 52%, rgba(245, 243, 255, 0.62));
+    box-shadow: 0 24px 56px rgba(79, 70, 229, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(34px) saturate(195%);
+    -webkit-backdrop-filter: blur(34px) saturate(195%);
+}
+
+.glass-composer::before {
+    position: absolute;
+    z-index: -1;
+    top: -8rem;
+    right: -5rem;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(129, 140, 248, 0.38), rgba(167, 139, 250, 0.16) 42%, transparent 72%);
+    content: "";
+    pointer-events: none;
+}
+
+.glass-composer form {
+    position: relative;
+}
+
+.glass-post {
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(238, 242, 255, 0.52) 58%, rgba(255, 255, 255, 0.68));
+    box-shadow: 0 14px 36px rgba(51, 65, 85, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(28px) saturate(175%);
+    -webkit-backdrop-filter: blur(28px) saturate(175%);
+}
+
+.message-glass-shell {
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(224, 231, 255, 0.5) 52%, rgba(245, 243, 255, 0.68));
+    box-shadow: 0 24px 64px rgba(79, 70, 229, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(32px) saturate(185%);
+    -webkit-backdrop-filter: blur(32px) saturate(185%);
+}
+
+.message-glass-sidebar {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(26px) saturate(170%);
+    -webkit-backdrop-filter: blur(26px) saturate(170%);
+}
+
+.message-glass-header,
+.message-glass-composer {
+    background: rgba(255, 255, 255, 0.46);
+    border-color: rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+}
+
+.message-glass-chat {
+    background: rgba(238, 242, 255, 0.22);
+}
+
+.message-glass-history {
+    background:
+        radial-gradient(ellipse at 82% 12%, rgba(167, 139, 250, 0.16), transparent 38%),
+        radial-gradient(ellipse at 12% 88%, rgba(129, 140, 248, 0.14), transparent 42%);
+}
+
+.message-glass-sent {
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.88), rgba(139, 92, 246, 0.78));
+    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+.message-glass-received {
+    border-color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(22px) saturate(175%);
+    -webkit-backdrop-filter: blur(22px) saturate(175%);
 }
 
 .custom-scrollbar::-webkit-scrollbar {
