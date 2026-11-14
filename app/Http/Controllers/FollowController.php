@@ -17,7 +17,7 @@ class FollowController extends Controller
         $currentUserId = Auth::id();
 
         if ($currentUserId === $user->id) {
-            abort(400, 'You cannot follow yourself.');
+            abort(400, __('You cannot follow yourself.'));
         }
 
         $existing = Follow::where('follower_id', $currentUserId)
@@ -47,6 +47,8 @@ class FollowController extends Controller
             ]);
         }
 
-        return back()->with('info', $following ? 'You are now following @'.$user->username : 'You unfollowed @'.$user->username);
+        return back()->with('info', $following
+            ? __('You are now following @:username', ['username' => $user->username])
+            : __('You unfollowed @:username', ['username' => $user->username]));
     }
 }

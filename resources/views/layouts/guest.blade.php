@@ -4,10 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'SocialHub — Modern Social Platform' }}</title>
+    <title>{{ $title ?? __('SocialHub — Modern Social Platform') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="h-full font-sans antialiased text-slate-900 bg-slate-50 flex items-center justify-center p-4">
+    <div class="absolute top-4 right-4 z-50">
+        <x-language-selector variant="mobile" />
+    </div>
+
     <div class="w-full max-w-md">
         <!-- Logo -->
         <div class="text-center mb-8">
@@ -19,7 +23,7 @@
                 </div>
                 <span class="text-2xl font-bold tracking-tight text-slate-900">Social<span class="text-indigo-600">Hub</span></span>
             </a>
-            <p class="text-sm text-slate-500 mt-2">{{ $subtitle ?? 'Connect, share, and message in real time' }}</p>
+            <p class="text-sm text-slate-500 mt-2">{{ $subtitle ?? __('Connect, share, and message in real time') }}</p>
         </div>
 
         <!-- Card -->

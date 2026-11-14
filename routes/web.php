@@ -9,12 +9,15 @@ use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
+
+Route::post('/language/{locale}', LanguageController::class)->name('language.switch');
 
 // Guest Authentication Routes
 Route::middleware('guest')->group(function () {

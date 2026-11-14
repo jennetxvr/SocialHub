@@ -37,7 +37,7 @@ class ConversationController extends Controller
 
         // Ensure user belongs to conversation
         if (! $conversation->users->contains('id', $currentUser->id)) {
-            abort(403, 'Unauthorized conversation access.');
+            abort(403, __('Unauthorized conversation access.'));
         }
 
         $conversation->markAsReadFor($currentUser);
@@ -67,7 +67,7 @@ class ConversationController extends Controller
         $currentUser = Auth::user();
 
         if ($currentUser->id === $user->id) {
-            return redirect()->route('messages.index')->with('warning', 'You cannot message yourself.');
+            return redirect()->route('messages.index')->with('warning', __('You cannot message yourself.'));
         }
 
         // Find existing 1-on-1 conversation
@@ -96,7 +96,7 @@ class ConversationController extends Controller
         $currentUser = Auth::user();
 
         if (! $conversation->users->contains('id', $currentUser->id)) {
-            abort(403, 'Unauthorized access.');
+            abort(403, __('Unauthorized access.'));
         }
 
         $validated = $request->validate([
@@ -118,7 +118,7 @@ class ConversationController extends Controller
                 'id' => $message->id,
                 'body' => e($message->body),
                 'user_id' => $message->user_id,
-                'created_at' => $message->created_at->format('g:i A'),
+                'created_at' => $message->created_at->locale(app()->getLocale())->isoFormat('LT'),
             ]);
         }
 
@@ -152,7 +152,7 @@ class ConversationController extends Controller
             'is_me' => $msg->user_id === $currentUser->id,
             'sender_name' => $msg->user->name,
             'sender_avatar' => $msg->user->avatarUrl(),
-            'created_at' => $msg->created_at->format('g:i A'),
+            'created_at' => $msg->created_at->locale(app()->getLocale())->isoFormat('LT'),
         ]));
     }
 }

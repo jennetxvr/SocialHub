@@ -76,11 +76,11 @@ window.toggleFollow = async function (userId, button) {
         if (response.ok) {
             const data = await response.json();
             if (data.following) {
-                button.textContent = 'Following';
+                button.textContent = button.dataset.followingLabel;
                 button.classList.remove('bg-indigo-600', 'text-white');
                 button.classList.add('bg-slate-100', 'text-slate-800', 'hover:bg-slate-200');
             } else {
-                button.textContent = 'Follow';
+                button.textContent = button.dataset.followLabel;
                 button.classList.add('bg-indigo-600', 'text-white');
                 button.classList.remove('bg-slate-100', 'text-slate-800', 'hover:bg-slate-200');
             }

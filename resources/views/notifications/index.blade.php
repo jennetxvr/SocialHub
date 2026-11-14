@@ -1,13 +1,13 @@
-<x-app-layout title="SocialHub — Notifications">
+<x-app-layout :title="__('SocialHub — Notifications')">
     <div class="max-w-2xl mx-auto px-4 py-6 space-y-6">
 
         <!-- Header -->
         <div class="flex items-center justify-between">
-            <h1 class="text-xl font-bold text-slate-900">Notifications</h1>
+            <h1 class="text-xl font-bold text-slate-900">{{ __('Notifications') }}</h1>
             <form method="POST" action="{{ route('notifications.readAll') }}">
                 @csrf
                 <button type="submit" class="text-xs font-semibold text-indigo-600 hover:text-indigo-500 transition cursor-pointer">
-                    Mark all as read
+                    {{ __('Mark all as read') }}
                 </button>
             </form>
         </div>
@@ -18,6 +18,12 @@
                 @php
                     $data = $notification->data;
                     $isUnread = is_null($notification->read_at);
+                    $message = match ($data['type'] ?? '') {
+                        'like' => __('liked your post.'),
+                        'comment' => __('commented on your post.'),
+                        'follow' => __('started following you.'),
+                        default => $data['message'] ?? __('sent an update.'),
+                    };
                 @endphp
                 <div class="p-4 flex items-start gap-3.5 transition {{ $isUnread ? 'bg-indigo-50/40' : 'hover:bg-slate-50' }}">
                     <!-- Icon Indicator -->
@@ -41,9 +47,9 @@
                     <div class="min-w-0 flex-1 space-y-1">
                         <div class="flex items-center gap-2">
                             <a href="{{ route('profile.show', $data['user_username'] ?? '') }}" class="font-bold text-xs text-slate-900 hover:text-indigo-600">
-                                {{ $data['user_name'] ?? 'Someone' }}
+                                {{ $data['user_name'] ?? __('Someone') }}
                             </a>
-                            <span class="text-xs text-slate-600">{{ $data['message'] ?? 'sent an update.' }}</span>
+                            <span class="text-xs text-slate-600">{{ $message }}</span>
                         </div>
 
                         @if (isset($data['comment_preview']))
@@ -52,7 +58,7 @@
 
                         @if (isset($data['post_id']))
                             <a href="{{ route('posts.show', $data['post_id']) }}" class="text-[11px] font-semibold text-indigo-600 hover:underline block">
-                                View post →
+                                {{ __('View post →') }}
                             </a>
                         @endif
 
@@ -65,7 +71,7 @@
                 </div>
             @empty
                 <div class="text-center py-12 p-8 text-slate-400 text-xs">
-                    You're all caught up! No notifications yet.
+                    {{ __('You\'re all caught up! No notifications yet.') }}
                 </div>
             @endforelse
         </div>
@@ -75,4 +81,3 @@
         </div>
     </div>
 </x-app-layout>
-

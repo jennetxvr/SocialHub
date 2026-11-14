@@ -1,4 +1,4 @@
-<x-app-layout title="SocialHub — Home Feed">
+<x-app-layout :title="__('SocialHub — Home Feed')">
     <div class="max-w-6xl mx-auto px-4 py-6 flex gap-8">
 
         <!-- Center Feed (w-full max-w-2xl) -->
@@ -12,7 +12,7 @@
                         <img src="{{ Auth::user()->avatarUrl() }}" alt="{{ Auth::user()->name }}" class="w-10 h-10 rounded-full object-cover border border-slate-200 shrink-0">
                         <div class="flex-1">
                             <textarea name="content" rows="3" required
-                                placeholder="What is happening in your world, {{ explode(' ', Auth::user()->name)[0] }}?"
+                                placeholder="{{ __('What is happening in your world, :name?', ['name' => explode(' ', Auth::user()->name)[0]]) }}"
                                 class="w-full text-[15px] placeholder-slate-400 border-0 focus:ring-0 p-0 resize-none focus:outline-none text-slate-800"></textarea>
 
                             <!-- Image Preview Container -->
@@ -27,20 +27,20 @@
                                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
-                                <span>Photo</span>
+                                <span>{{ __('Photo') }}</span>
                                 <input type="file" name="images[]" id="post-images" multiple accept="image/*" class="hidden" onchange="previewImages(event)">
                             </label>
 
                             <!-- Visibility Selector -->
                             <select name="visibility" class="text-xs font-medium text-slate-600 bg-slate-100 border-0 rounded-lg px-2.5 py-1.5 focus:ring-1 focus:ring-indigo-500 cursor-pointer">
-                                <option value="public">Public</option>
-                                <option value="followers">Followers only</option>
+                                <option value="public">{{ __('Public') }}</option>
+                                <option value="followers">{{ __('Followers only') }}</option>
                             </select>
                         </div>
 
                         <button type="submit"
                             class="px-5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-xs tracking-wide shadow-sm shadow-indigo-600/20 transition cursor-pointer">
-                            Post
+                            {{ __('Post') }}
                         </button>
                     </div>
                 </form>
@@ -50,11 +50,11 @@
             <div class="flex items-center border-b border-slate-200">
                 <a href="{{ route('feed', ['tab' => 'for-you']) }}"
                     class="flex-1 text-center py-3 text-sm font-bold border-b-2 transition {{ $tab === 'for-you' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-800' }}">
-                    For You
+                    {{ __('For You') }}
                 </a>
                 <a href="{{ route('feed', ['tab' => 'following']) }}"
                     class="flex-1 text-center py-3 text-sm font-bold border-b-2 transition {{ $tab === 'following' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-800' }}">
-                    Following
+                    {{ __('Following') }}
                 </a>
             </div>
 
@@ -66,8 +66,8 @@
                     <div class="w-12 h-12 mx-auto rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3">
                         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
                     </div>
-                    <h3 class="text-base font-bold text-slate-900">No posts in this feed yet</h3>
-                    <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">Follow other creators or be the first to share what is on your mind today!</p>
+                    <h3 class="text-base font-bold text-slate-900">{{ __('No posts in this feed yet') }}</h3>
+                    <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">{{ __('Follow other creators or be the first to share what is on your mind today!') }}</p>
                 </div>
             @endforelse
 
@@ -84,14 +84,14 @@
                 <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </span>
-                <input type="text" name="q" placeholder="Search creators & topics..."
+                <input type="text" name="q" placeholder="{{ __('Search creators & topics...') }}"
                     class="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200/70 bg-white/80 backdrop-blur-md text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition shadow-xs">
             </form>
 
             <!-- Who to Follow -->
             @if ($suggestedUsers->isNotEmpty())
                 <div class="glass-sidebar-surface bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 p-5 shadow-sm ring-1 ring-slate-900/5">
-                    <h3 class="text-sm font-bold text-slate-900 mb-4">Who to follow</h3>
+                    <h3 class="text-sm font-bold text-slate-900 mb-4">{{ __('Who to follow') }}</h3>
                     <div class="space-y-4">
                         @foreach ($suggestedUsers as $user)
                             <div class="flex items-center justify-between gap-3">
@@ -103,8 +103,10 @@
                                     </div>
                                 </a>
                                 <button onclick="toggleFollow({{ $user->id }}, this)"
+                                    data-follow-label="{{ __('Follow') }}"
+                                    data-following-label="{{ __('Following') }}"
                                     class="px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition cursor-pointer">
-                                    Follow
+                                    {{ __('Follow') }}
                                 </button>
                             </div>
                         @endforeach
@@ -116,9 +118,9 @@
             <div class="text-[11px] text-slate-400 space-x-2 px-2">
                 <span>© 2026 SocialHub</span>
                 <span>•</span>
-                <a href="{{ route('explore') }}" class="hover:underline">Explore</a>
+                <a href="{{ route('explore') }}" class="hover:underline">{{ __('Explore') }}</a>
                 <span>•</span>
-                <a href="{{ route('settings.index') }}" class="hover:underline">Settings</a>
+                <a href="{{ route('settings.index') }}" class="hover:underline">{{ __('Settings') }}</a>
             </div>
         </aside>
     </div>

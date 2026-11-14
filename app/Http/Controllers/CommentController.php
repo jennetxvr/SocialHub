@@ -32,19 +32,19 @@ class CommentController extends Controller
             $post->user->notify(new NewCommentNotification(Auth::user(), $post, $comment));
         }
 
-        return back()->with('success', 'Comment posted!');
+        return back()->with('success', __('Comment posted!'));
     }
 
     public function destroy(Comment $comment): RedirectResponse
     {
         if ($comment->user_id !== Auth::id() && $comment->post->user_id !== Auth::id()) {
-            abort(403, 'Unauthorized action.');
+            abort(403, __('Unauthorized action.'));
         }
 
         $post = $comment->post;
         $comment->delete();
         $post->decrement('comments_count');
 
-        return back()->with('success', 'Comment deleted.');
+        return back()->with('success', __('Comment deleted.'));
     }
 }

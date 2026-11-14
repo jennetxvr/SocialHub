@@ -47,7 +47,7 @@ class PostController extends Controller
             }
         }
 
-        return back()->with('success', 'Your post was published!');
+        return back()->with('success', __('Your post was published!'));
     }
 
     public function show(Post $post): View
@@ -70,7 +70,7 @@ class PostController extends Controller
     public function destroy(Post $post): RedirectResponse
     {
         if ($post->user_id !== Auth::id()) {
-            abort(403, 'Unauthorized action.');
+            abort(403, __('Unauthorized action.'));
         }
 
         // Delete associated media files
@@ -81,6 +81,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('feed')->with('success', 'Post deleted.');
+        return redirect()->route('feed')->with('success', __('Post deleted.'));
     }
 }

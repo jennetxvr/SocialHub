@@ -36,16 +36,17 @@ class RegisterController extends Controller
             'username' => strtolower($validated['username']),
             'email' => strtolower($validated['email']),
             'password' => Hash::make($validated['password']),
+            'preferred_locale' => $request->session()->get('locale', 'en'),
         ]);
 
         Profile::create([
             'user_id' => $user->id,
-            'bio' => 'Hello SocialHub! Just joined.',
+            'bio' => __('Hello SocialHub! Just joined.'),
             'is_private' => false,
         ]);
 
         Auth::login($user);
 
-        return redirect()->route('feed')->with('success', 'Welcome to SocialHub!');
+        return redirect()->route('feed')->with('success', __('Welcome to SocialHub!'));
     }
 }

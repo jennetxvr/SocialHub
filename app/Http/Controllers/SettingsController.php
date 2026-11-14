@@ -74,7 +74,7 @@ class SettingsController extends Controller
             $profileData
         );
 
-        return back()->with('success', 'Profile updated successfully!');
+        return back()->with('success', __('Profile updated successfully!'));
     }
 
     public function updatePassword(Request $request): RedirectResponse
@@ -91,7 +91,7 @@ class SettingsController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('success', 'Password updated successfully!');
+        return back()->with('success', __('Password updated successfully!'));
     }
 
     public function updatePrivacy(Request $request): RedirectResponse
@@ -106,6 +106,6 @@ class SettingsController extends Controller
             ['is_private' => $isPrivate]
         );
 
-        return back()->with('success', 'Privacy settings updated!');
+        return back()->with('success', __('Privacy settings updated!'));
     }
 }

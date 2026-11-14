@@ -15,17 +15,17 @@
                 @if ($post->visibility !== 'public')
                     <span class="inline-flex items-center gap-1 text-[11px] font-medium text-slate-400">
                         <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                        Followers only
+                        {{ __('Followers only') }}
                     </span>
                 @endif
             </div>
         </a>
 
         @if (Auth::id() === $post->user_id)
-            <form method="POST" action="{{ route('posts.destroy', $post) }}" onsubmit="return confirm('Are you sure you want to delete this post?');">
+            <form method="POST" action="{{ route('posts.destroy', $post) }}" onsubmit="return confirm('{{ __('Are you sure you want to delete this post?') }}');">
                 @csrf
                 @method('DELETE')
-                <button type="submit" title="Delete post" class="text-slate-400 hover:text-rose-600 p-1 transition cursor-pointer">
+                <button type="submit" title="{{ __('Delete post') }}" class="text-slate-400 hover:text-rose-600 p-1 transition cursor-pointer">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                 </button>
             </form>
@@ -42,7 +42,7 @@
         <div class="mt-3 rounded-xl overflow-hidden border border-slate-200/80 bg-slate-100 {{ $post->media->count() > 1 ? 'grid grid-cols-2 gap-1' : '' }}">
             @foreach ($post->media as $media)
                 <div class="relative overflow-hidden group max-h-96">
-                    <img src="{{ $media->url() }}" alt="Attachment" class="w-full h-full object-cover transition duration-300 group-hover:scale-102">
+                    <img src="{{ $media->url() }}" alt="{{ __('Attachment') }}" class="w-full h-full object-cover transition duration-300 group-hover:scale-102">
                 </div>
             @endforeach
         </div>
@@ -68,11 +68,11 @@
         </a>
 
         <!-- Share / Copy link -->
-        <button onclick="navigator.clipboard.writeText('{{ route('posts.show', $post) }}'); alert('Post link copied to clipboard!');" title="Share" class="flex items-center gap-1.5 text-xs font-semibold px-2 py-1.5 rounded-lg hover:bg-slate-100 hover:text-slate-800 transition cursor-pointer">
+        <button onclick="navigator.clipboard.writeText('{{ route('posts.show', $post) }}'); alert('{{ __('Post link copied to clipboard!') }}');" title="{{ __('Share') }}" class="flex items-center gap-1.5 text-xs font-semibold px-2 py-1.5 rounded-lg hover:bg-slate-100 hover:text-slate-800 transition cursor-pointer">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
             </svg>
-            <span>Share</span>
+            <span>{{ __('Share') }}</span>
         </button>
     </div>
 </article>
