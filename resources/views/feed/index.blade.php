@@ -90,7 +90,7 @@
 
             <!-- Who to Follow -->
             @if ($suggestedUsers->isNotEmpty())
-                <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 p-5 shadow-sm ring-1 ring-slate-900/5">
+                <div class="glass-sidebar-surface bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 p-5 shadow-sm ring-1 ring-slate-900/5">
                     <h3 class="text-sm font-bold text-slate-900 mb-4">Who to follow</h3>
                     <div class="space-y-4">
                         @foreach ($suggestedUsers as $user)

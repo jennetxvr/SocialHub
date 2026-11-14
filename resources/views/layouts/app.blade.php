@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-slate-50">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="min-h-full">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,11 +7,11 @@
     <title>{{ $title ?? 'SocialHub' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-full font-sans antialiased text-slate-900 bg-slate-50">
-    <div class="min-h-full flex flex-col md:flex-row">
+<body class="min-h-screen font-sans antialiased text-slate-900 bg-slate-50">
+    <div class="min-h-screen flex flex-col md:flex-row">
 
         <!-- Desktop & Tablet Left Sidebar -->
-        <aside class="hidden md:flex md:w-64 lg:w-72 flex-col justify-between border-r border-slate-200/60 bg-white/80 backdrop-blur-xl p-5 sticky top-0 h-screen z-20 shadow-xs">
+        <aside class="glass-sidebar-surface hidden md:flex md:w-64 lg:w-72 flex-col justify-between border-r border-slate-200/60 bg-white/80 backdrop-blur-xl p-5 sticky top-0 h-screen z-20 shadow-xs">
             <div class="space-y-6">
                 <!-- Brand Logo -->
                 <a href="{{ route('feed') }}" class="flex items-center gap-2.5 px-2">
@@ -116,7 +116,7 @@
         </aside>
 
         <!-- Mobile Top Header -->
-        <header class="md:hidden flex items-center justify-between p-4 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 sticky top-0 z-30 shadow-xs">
+        <header class="glass-sidebar-surface md:hidden flex items-center justify-between p-4 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 sticky top-0 z-30 shadow-xs">
             <a href="{{ route('feed') }}" class="flex items-center gap-2">
                 <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -146,7 +146,7 @@
         </header>
 
         <!-- Main Content Area -->
-        <main class="flex-1 min-w-0 pb-20 md:pb-6">
+        <main class="app-content-surface flex-1 min-w-0 pb-20 md:pb-6">
             <!-- Flash Message Banner -->
             @if (session('success'))
                 <div class="max-w-2xl mx-auto mt-4 px-4">
@@ -182,7 +182,7 @@
         </main>
 
         <!-- Mobile Bottom Nav Bar -->
-        <nav class="md:hidden fixed bottom-0 inset-x-0 bg-white/80 backdrop-blur-xl border-t border-slate-200/60 px-4 py-2.5 flex items-center justify-around z-30 shadow-lg">
+        <nav class="glass-sidebar-surface md:hidden fixed bottom-0 inset-x-0 bg-white/80 backdrop-blur-xl border-t border-slate-200/60 px-4 py-2.5 flex items-center justify-around z-30 shadow-lg">
             <a href="{{ route('feed') }}" class="p-2 {{ request()->routeIs('feed') ? 'text-indigo-600' : 'text-slate-500' }}">
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -231,4 +231,3 @@
     @endauth
 </body>
 </html>
-

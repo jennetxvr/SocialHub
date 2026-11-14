@@ -23,7 +23,7 @@
         </div>
 
         <!-- Card -->
-        <div class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/60 p-6 sm:p-8 ring-1 ring-slate-900/5">
+        <div class="glass-auth-card bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/60 p-6 sm:p-8 ring-1 ring-slate-900/5">
             @if (session('status'))
                 <div class="mb-4 text-sm font-medium text-emerald-600 bg-emerald-50 p-3 rounded-lg border border-emerald-100">
                     {{ session('status') }}
@@ -35,4 +35,3 @@
     </div>
 </body>
 </html>
-

@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function showLoginForm(): View|RedirectResponse
     {
-        if (Auth::check()) {
+        if (Auth::check()) { ///checks login status, Ulanyjynyň ulgama girendigini barlaýar
             return redirect()->route('feed');
         }
 
@@ -35,7 +35,7 @@ class LoginController extends Controller
 
         $remember = $request->boolean('remember');
 
-        if (Auth::attempt($attemptData, $remember)) {
+        if (Auth::attempt($attemptData, $remember)) { // authenticates user credentials,  ulanyjy ady we paroly tassyklap, ulgama girizýär. girizilen maglumatlari MYSQLdaki database bilen denesdiryar\barlayar
             $request->session()->regenerate();
 
             return redirect()->intended(route('feed'))->with('success', 'Welcome back!');

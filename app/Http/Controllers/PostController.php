@@ -15,6 +15,8 @@ class PostController extends Controller
 {
     public function store(Request $request): RedirectResponse
     {
+        $data = $request->all();
+
         $validated = $request->validate([
             'content' => ['required', 'string', 'max:2000'],
             'visibility' => ['nullable', 'in:public,followers,private'],
